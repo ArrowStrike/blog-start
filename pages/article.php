@@ -64,7 +64,7 @@ require "../includes/config.php";
 
                             </div>
                             <br>
-                            <a>Опубликовано: <?php echo $art['pubdate']; ?> </a>
+                            <a>Опубликовано: <?php echo date('d-m-y H:i', strtotime($art['pubdate'])); ?> </a>
                         </div>
                         <?php include "../includes/commentsView.php";
                         include "../includes/commentsAdd.php"; ?>
