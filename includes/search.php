@@ -1,0 +1,106 @@
+<div class="block">
+    <h3>Результат поиска</h3><br>
+    <?php
+
+    $page = 1;
+    $countOfArticlesPerPage = 4;//количество записей на стринце
+    //текущая страница
+    if (isset($_GET['search'])) {
+
+        if (isset($_GET['page'])) {
+            $page = (int)$_GET['page'];
+        }
+
+        $keyWord = $_GET['search'];
+        $offset = ($countOfArticlesPerPage * $page) - $countOfArticlesPerPage; //сдвиг
+        $keyWord = trim($keyWord);
+        $keyWord = mysqli_real_escape_string($connection, $keyWord);
+        $keyWord = htmlspecialchars($keyWord);
+        $totalCount=0;//количество записей(статей)
+
+        if (!empty($keyWord)) {
+            if (mb_strlen($keyWord) < 3) {
+                $matchFound = '<p>Слишком короткий поисковый запрос.</p>';
+            } else if (strlen($keyWord) > 128) {
+                $matchFound = '<p>Слишком длинный поисковый запрос.</p>';
+            } else {
+                $q = "SELECT *
+                  FROM articles WHERE title LIKE '%$keyWord%'
+                  OR text LIKE '%$keyWord%' LIMIT $offset,$countOfArticlesPerPage";
+                $result = mysqli_query($connection, $q);
+                if (mysqli_affected_rows($connection) > 0) {
+
+                    $matchFound = array();
+                    while ($foundStr = mysqli_fetch_assoc($result)) {
+                        $matchFound[] = $foundStr;
+                    }
+                } else {
+                    $matchFound = '<p>По вашему запросу ниодной статьи не найдено.</p>';
+                }
+                $totalCountArticles = mysqli_query($connection, "SELECT COUNT(id) AS total_count FROM articles WHERE title LIKE '%$keyWord%'
+                  OR text LIKE '%$keyWord%'");
+                $totalCount = mysqli_fetch_assoc($totalCountArticles);
+                $totalCount = $totalCount['total_count'];
+            }
+        } else {
+            $matchFound = '<p>Задан пустой поисковый запрос.</p>';
+        }
+    }
+
+
+    if (is_array($matchFound)) {
+        echo '<p>По запросу "<b>' . $keyWord . '</b>"  найдено совпадений: ' . $totalCount . '</p>';
+    } else echo $matchFound; ?>
+
+    <div class="block__content">
+        <div class="articles articles__horizontal">
+            <?php
+            foreach ($matchFound as $match) {
+                ?>
+                <article class="article">
+                    <div class="article__image"
+                         style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
+                    <div class="article__info">
+                        <a href="/pages/article.php?id=<?php echo $match['id']; ?>"><?php echo $match['title']; ?></a>
+                        <div class="article__info__meta">
+                            <?php
+                            $art_cat = false;
+                            foreach ($categories as $cat) {
+                                if ($cat['id'] == $match['category_id']) {
+                                    $art_cat = $cat;
+                                    break;
+                                }
+                            }
+                            ?>
+                            <small>Категория: <a
+                                    href="../pages/articles.php?category=<?php echo $match['category_id']; ?>"><?php echo $art_cat['title']; ?></a>
+                            </small>
+                        </div>
+                        <div
+                            class="article__info__preview"><?php articlesIntro($match['text'], $word_limit = 10); ?>
+                        </div>
+                    </div>
+                </article>
+                <?php
+            }
+            ?>
+        </div>
+
+        <?php
+
+
+        $totalPages = ceil($totalCount / $countOfArticlesPerPage);
+        if ($page <= 1 || $page > $totalPages) {
+            $page = 1;
+        }
+
+        if ($page > 1) {
+            echo '<a href="/pages/articles.php?search='. $keyWord. '&page='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+        }
+        if ($page < $totalPages) {
+            echo '<a href="/pages/articles.php?search='. $keyWord. '&page='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+        }
+        ?>
+
+    </div>
+</div>

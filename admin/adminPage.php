@@ -1,0 +1,158 @@
+<?php
+require_once "start.php";
+?>
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <meta charset="utf-8">
+        <title>Админка блога Влада</title>
+        <link rel="stylesheet" href="../media/css/style.css?version=<?php echo $version ?>">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/avgrund.css">
+        <link rel="shortcut icon" href="/media/images/books.ico" type="image/x-icon">
+    </head>
+    <body>
+    <div class="container">
+        <!-- Header (navbar) -->
+        <header id="header">
+            <nav class="navbar navbar-default">
+                <div class="header__top" style="padding:0;">
+                    <div class="container">
+                        <nav class="header__top__menu">
+                            <ul>
+                                <li><a href="index.php?action=add">
+                                        <z><b>Добавить статью</b></z>
+                                    </a>
+                                <li><a href="../index.php">Перейти на сайт</a>
+                                <li><a href="logout.php">Выход</a>
+                            </ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </nav>
+            <div id="addart">
+                <form method="post" action="index.php?action=addCategory">
+                    <!-- Добавление категории -->
+                    <label>
+                        Добавить категорию
+                        <input type="text" name="newNameOfCategory" value="" class="form-item" placeholder="Название"
+                               required title="Введите название категории">
+                    </label>
+                    <input type="submit" value="Добавить" class="btn" name="getPost">
+                </form>
+                <br>
+                <form method="post" action="index.php?action=deleteCategory">
+                    <label>
+                        Удалить категорию. <br>
+                        <z>ВНИМАНИЕ! Удаление категории приведет к удалению всех привязанных к ней статей, фотографий и
+                            комментариев.<br>
+                            Перед удалением, поменяйте категорию у статей, которые хотите сохранить!
+                        </z>
+                        <br>
+                        <select required name="category_id" autofocus title="Выберите категорию">
+                            <option disabled selected></option><?php
+                            foreach ($categories as $cat) {
+                                ?>
+                                <option value="<?php echo $cat['id']; ?>"><?php echo $cat['title']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </label>
+                    <input type="submit" id="show" value="Удалить" class="btn" name="doPost">
+                </form>
+            </div>
+            <br>
+            <form method="post">
+                <!-- ПОИСК СТАТЬИ -->
+                <label>
+                    Поиск статьи по отрывку или названию
+                    <input type="text" name="searchArticle" value="" class="form-item" placeholder="Поиск"
+                           required>
+                </label>
+                <input type="submit" value="Найти" class="btn">
+            </form>
+            <?php if ($_POST['searchArticle'] != null) {
+                if (is_array($matchFound)) {
+                    echo '<p>По запросу "<b>' . $_POST['searchArticle'] . '</b>"  найдено совпадений: ' . count($matchFound) . '</p>';
+                    ?>
+                    <table class="table">
+                        <tr>
+                            <th><b>Дата и время публикации</b></th>
+                            <th><b>Категория</b></th>
+                            <th><b>Заголовок</b></th>
+                            <th><b>Редактирование/Удаление комментариев</b></th>
+                            <th><b>Удаление</b></th>
+                        </tr>
+                        <?php foreach ($matchFound as $elem): ?>
+                            <tr>
+                                <td><?= $elem['pubdate'] ?></td>
+                                <td><?= $elem['category_id'] ?></td>
+                                <td><?= articlesIntro($elem['title'], 80) ?></td>
+                                <td>
+                                    <a href="index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
+                                </td>
+                                <td>
+                                    <a href="index.php?action=delete&id=<?= $elem['id'] ?>"
+                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">Удалить</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </table><br>
+                <?php } else echo $matchFound;
+            } ?>
+
+            <!-- END Header (navbar) -->
+            <br>
+            <?php if (!empty($articles[0]['id'])) { ?>
+                <table class="table">
+                    <label> Все статьи
+                        <tr>
+                            <th><b>Дата и время публикации</b></th>
+                            <th><b>Категория</b></th>
+                            <th><b>Заголовок</b></th>
+                            <th><b>Редактирование/Удаление комментариев</b></th>
+                            <th><b>Удаление</b></th>
+                        </tr>
+                        <?php
+                        foreach ($articles as $article): ?>
+                            <tr>
+                                <td><?= $article['pubdate'] ?></td>
+                                <td><?= $article['category_id'] ?></td>
+                                <td><?= articlesIntro($article['title'], 80) ?></td>
+                                <td>
+                                    <a href="index.php?action=edit&id=<?= $article['id'] ?>">Редактировать</a>
+                                </td>
+                                <td>
+                                    <a href="index.php?action=delete&id=<?= $article['id'] ?>&page=<?= $articles[0]['page'] ?>"
+                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">Удалить</a>
+                                </td>
+                            </tr>
+                            <?php
+                        endforeach;
+
+
+                        ?>
+                    </label>
+                </table>
+
+            <?php } else echo "В данный момент нет ниодной статьи";
+
+            if ($articles[0]['page'] > 1) {
+                echo '<a href="index.php?page=' . ($articles[0]['page'] - 1) . '"><div class="paginationLeft">&laquo;'. ($articles[0]['page'] - 1) .' страница</div></a>';
+            }
+            if ($articles[0]['page'] < $articles[0]['totalPages']) {
+                echo '<a href="index.php?page=' . ($articles[0]['page'] + 1) . '"><div class="paginationRight">'. ($articles[0]['page'] + 1) .'  страница &raquo;</div></a>';
+            } ?>
+
+
+    </div>
+    <footer>
+        <p>
+            Блог Влада<br>Copyright &copy; 2017
+        </p>
+    </footer>
+    </body>
+</hmtl>
+
