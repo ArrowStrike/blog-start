@@ -12,9 +12,9 @@
                 if ($postData['name'] == '') {
                     $errors[] = 'Введите имя!';
                 }
-             /* if ($postData['nickname'] == '') {
-                    $errors[] = 'Введите Ваш никнейм!';
-                }*/
+                /* if ($postData['nickname'] == '') {
+                       $errors[] = 'Введите Ваш никнейм!';
+                   }*/
                 if ($postData['email'] == '') {
                     $errors[] = 'Введите Email!';
                 }
@@ -50,14 +50,12 @@ VALUES ('" . $postData['name'] . "','" . $postData['nickname'] . "','" . $postDa
                          style="background-image: url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);"></div>
                     <div class="article__info">
                         <a href="../pages/article.php?id=<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
-                        <div class="article__info__meta"></div>
+                        <div
+                            class="article__info__meta"><?php echo date('H:i d-m-y', strtotime($comment['pubdate'])); ?></div>
                         <div
                             class="article__info__preview"><?php echo $comment['text']; ?>
                         </div>
-
                     </div>
-                    <div class="block">
-                    <d><?php echo $comment['pubdate']; ?></d></div>
                 </article>
                 <?php
             }
