@@ -319,11 +319,10 @@ function uploadImage()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Проверяем тип файла
         if (!in_array($_FILES['image']['type'], $types))
-            die('Запрещённый тип файла. <a href="?">Попробовать другой файл?</a>');
-
+            die('Запрещённый тип файла. <a href="javascript:history.back()">Попробовать другой файл?</a>');
 // Проверяем размер файла
         if ($_FILES['image']['size'] > $size)
-            die('Слишком большой размер файла. <a href="?">Попробовать другой файл?</a>');
+            die('Слишком большой размер файла. <a href="javascript:history.back()">Попробовать другой файл?</a>');
 
     }
     $name = resize($_FILES['image'], $type = 2, $tmpPath);
