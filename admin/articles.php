@@ -319,11 +319,10 @@ function uploadImage()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Проверяем тип файла
         if (!in_array($_FILES['image']['type'], $types))
-            die('Запрещённый тип файла. <a href="?">Попробовать другой файл?</a>');
-
+            die('Запрещённый тип файла. <a href="javascript:history.back()">Попробовать другой файл?</a>');
 // Проверяем размер файла
         if ($_FILES['image']['size'] > $size)
-            die('Слишком большой размер файла. <a href="?">Попробовать другой файл?</a>');
+            die('Слишком большой размер файла. <a href="javascript:history.back()">Попробовать другой файл?</a>');
 
     }
     $name = resize($_FILES['image'], $type = 2, $tmpPath);
@@ -380,7 +379,6 @@ function deleteImage($link, $articleID)
 
 function resize($file, $type, $directory, $rotate = null, $quality = null)
 {
-    ;
 // Функция изменения размера
 // Изменяет размер изображения в зависимости от type:
 //    type = 1 - эскиз
@@ -511,4 +509,10 @@ function isAdmin($link, $email)
     $isOrNot = mysqli_fetch_assoc($result);
     return $isOrNot["admin"];
 
+}
+
+function redirect($link)
+{
+    $link = "Location: " . $link;
+    header($link);
 }
