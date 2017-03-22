@@ -5,7 +5,7 @@ require_once "database.php";
 $link = db_connect();
 
 if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
-    header("Location: index.php");
+    redirect("index.php");
     exit();
 }
 ?>
@@ -15,7 +15,7 @@ if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
     <head>
         <meta charset="utf-8">
         <title>Админка блога Влада</title>
-        <link rel="stylesheet" href="../media/css/style.css?version=<?php echo  $version ?>">
+        <link rel="stylesheet" href="../media/css/style.css?version=<?php echo $version ?>">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
               crossorigin="anonymous">
@@ -40,8 +40,9 @@ if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
             </nav>
 
             <?php
-            if ($_SESSION["error_auth"]==1){
-                ?><z><B>Неверные имя пользователя и/или пароль!</B></z>
+            if ($_SESSION["error_auth"] == 1) {
+                ?>
+                <z><B>Неверные имя пользователя и/или пароль!</B></z>
                 <?php
                 unset ($_SESSION["error_auth"]);
                 ?><br><br><?php
