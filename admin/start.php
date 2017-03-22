@@ -10,6 +10,6 @@ require_once "articles.php";
 require_once "database.php";
 $link = db_connect();
 if (!((checkUser($link, $_SESSION["email"], $_SESSION["password"])) && (isAdmin($link,$_SESSION["email"])))) {
-    header("Location: /admin/authPage.php");
+    redirect("/admin/authPage.php");
     exit;
 }
