@@ -1,5 +1,5 @@
 <?php
-function articlesAll($link)
+function allArticles($link)
 {
     $page = 1;
     $countOfArticlesPerPage = 8;
@@ -38,7 +38,7 @@ function articlesAll($link)
     return $articles;
 }
 
-function articleGet($link, $id)
+function getArticle($link, $id)
 {
     $query = sprintf("SELECT id, title, text, image, category_id FROM articles WHERE id=%d", (int)$id);
     $result = mysqli_query($link, $query);
@@ -51,7 +51,7 @@ function articleGet($link, $id)
     return $article;
 }
 
-function articlesNew($link, $category_id, $title, $image, $text)
+function newArticle($link, $category_id, $title, $image, $text)
 {
 // Подготовка
     $title = trim($title);
@@ -79,7 +79,7 @@ function articlesNew($link, $category_id, $title, $image, $text)
     return true;
 }
 
-function articlesEdit($link, $id, $category_id, $title, $image, $text)
+function editArticle($link, $id, $category_id, $title, $image, $text)
 {
 // Подготовка
     $title = trim($title);//trim --  Удаляет пробелы из начала и конца строки
@@ -120,7 +120,7 @@ function articlesEdit($link, $id, $category_id, $title, $image, $text)
     return mysqli_affected_rows($link); //вовзращаем количество строк, которое отредактировали
 }
 
-function articlesDelete($link, $id)
+function deleteArticle($link, $id)
 {
     $id = (int)$id;
 // Проверка
@@ -140,7 +140,7 @@ function articlesDelete($link, $id)
 }
 
 //точки по лимиту слов
-function articlesIntro($text, $word_limit = 15)
+function introArticle($text, $word_limit = 15)
 {
     $words = explode(' ', $text, ($word_limit + 1));
     $words_in_text = count(explode(' ', $text));
@@ -173,7 +173,7 @@ else return $text;
 strrpos
 function do_excerpt*/
 
-function categoriesGet($link)
+function getCategories($link)
 {
     $categoriesQueryResult = mysqli_query($link, "SELECT * FROM articles_categories  ORDER BY id"); //цикл повторяется в header.php
 
@@ -187,7 +187,7 @@ function categoriesGet($link)
     return $categories;
 }
 
-function categoryGet($link, $id)
+function getCategory($link, $id)
 {
     $query = "SELECT * FROM articles_categories WHERE id IN (SELECT category_id FROM articles WHERE id =" . (int)$id . ")";
     $queryResult = mysqli_query($link, $query); //цикл повторяется в header.php
@@ -201,7 +201,7 @@ function categoryGet($link, $id)
 
 }
 
-function categoryNew($link, $categoryNewName)
+function newCategory($link, $categoryNewName)
 {
     if ($categoryNewName == '')
         return false;
@@ -219,7 +219,7 @@ function categoryNew($link, $categoryNewName)
 
 
 /////Удаление категории -->
-function categoryDelete($link, $categoryID)
+function deleteCategory($link, $categoryID)
 {
 
     $categoryID = (int)$categoryID;
@@ -312,7 +312,7 @@ function uploadImage()
     $tmpPath = '';
     $tmpPathPreview = '../';
 // Массив допустимых значений типа файла
-    $types = array("image/gif", "image/png", "image/jpeg");
+    $types = array("image/png", "image/jpeg");
 // Максимальный размер файла
     $size = 5024000;
 // Обработка запроса
@@ -327,11 +327,11 @@ function uploadImage()
     }
     $name = resize($_FILES['image'], $type = 2, $tmpPath);
     $namePreview = resize($_FILES['image'], $type = 1, $tmpPathPreview);
-    @copy($tmpPath . $name, $path . $name);
+    copy($tmpPath . $name, $path . $name);
 // Загрузка файла и вывод сообщения
     /* if (!@copy($tmp_path . $name, $path . $name))
     echo '<p>Что-то пошло не так.</p>';*/
-    @copy($tmpPathPreview . $namePreview, $pathResize . $namePreview);
+    copy($tmpPathPreview . $namePreview, $pathResize . $namePreview);
     unlink($tmpPath . $name);
     unlink($tmpPathPreview . $namePreview);
 }
@@ -354,7 +354,7 @@ function deleteImage($link, $articleID)
 {
     $articleID = (int)$articleID;
 
-    $article = articleGet($link, $articleID);
+    $article = getArticle($link, $articleID);
     $templateSelect = "SELECT COUNT(image) AS repeats FROM articles WHERE image='%s'";
     $querySel = sprintf($templateSelect,
         mysqli_real_escape_string($link, $article['image']));
@@ -386,12 +386,12 @@ function resize($file, $type, $directory, $rotate = null, $quality = null)
 //    rotate - поворот на количество градусов (желательно использовать значение 90, 180, 270)
 //    quality - качество изображения (по умолчанию 75%)
 
-    $tmp_path = $directory;
+    $tmpPath = $directory;
 
 
 // Ограничение по ширине в пикселях
-    $max_thumb_size = 150;
-    $max_size = 600;
+    $maxThumbSize = 150;
+    $maxSize = 600;
 
 // Качество изображения по умолчанию
     if ($quality == null)
@@ -400,10 +400,8 @@ function resize($file, $type, $directory, $rotate = null, $quality = null)
 // Cоздаём исходное изображение на основе исходного файла
     if ($file['type'] == 'image/jpeg')
         $source = imagecreatefromjpeg($file['tmp_name']);
-    elseif ($file['type'] == 'image/png')
+    else if ($file['type'] == 'image/png')
         $source = imagecreatefrompng($file['tmp_name']);
-    elseif ($file['type'] == 'image/gif')
-        $source = imagecreatefromgif($file['tmp_name']);
     else
         return false;
 
@@ -414,37 +412,50 @@ function resize($file, $type, $directory, $rotate = null, $quality = null)
         $src = $source;
 
 // Определяем ширину и высоту изображения
-    $w_src = imagesx($src);
-    $h_src = imagesy($src);
+    $wSrc = imagesx($src);
+    $hSrc = imagesy($src);
 
 // В зависимости от типа (эскиз или большое изображение) устанавливаем ограничение по ширине.
     if ($type == 1)
-        $w = $max_thumb_size;
-    elseif ($type == 2)
-        $w = $max_size;
+        $w = $maxThumbSize;
+    else if ($type == 2)
+        $w = $maxSize;
 
 // Если ширина больше заданной
-    if ($w_src > $w) {
+    if ($wSrc > $w) {
 // Вычисление пропорций
-        $ratio = $w_src / $w;
-        $w_dest = round($w_src / $ratio);
-        $h_dest = round($h_src / $ratio);
+        $ratio = $wSrc / $w;
+        $wDest = round($wSrc / $ratio);
+        $hDest = round($hSrc / $ratio);
 
 // Создаём пустую картинку
-        $dest = imagecreatetruecolor($w_dest, $h_dest);
+        $dest = imagecreatetruecolor($wDest, $hDest);
 
 // Копируем старое изображение в новое с изменением параметров
-        imagecopyresampled($dest, $src, 0, 0, 0, 0, $w_dest, $h_dest, $w_src, $h_src);
+        imagecopyresampled($dest, $src, 0, 0, 0, 0, $wDest, $hDest, $wSrc, $hSrc);
 
 // Вывод картинки и очистка памяти
-        imagejpeg($dest, $tmp_path . $file['name'], $quality);
+        if ($file['type'] == 'image/jpeg')
+            imagejpeg($dest, $tmpPath . $file['name'], $quality);
+        else if ($file['type'] == 'image/png') {
+            $q = 9 / 100;
+            $quality *= $q;
+            imagepng($dest, $tmpPath . $file['name'], $quality);
+        } else
+            return false;
         imagedestroy($dest);
         imagedestroy($src);
-
         return $file['name'];
     } else {
 // Вывод картинки и очистка памяти
-        imagejpeg($src, $tmp_path . $file['name'], $quality);
+        if ($file['type'] == 'image/jpeg')
+            imagejpeg($src, $tmpPath . $file['name'], $quality);
+        else if ($file['type'] == 'image/png') {
+            $q = 9 / 100;
+            $quality *= $q;
+            imagepng($src, $tmpPath . $file['name'], $quality);
+        } else
+            return false;
         imagedestroy($src);
 
         return $file['name'];
