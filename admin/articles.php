@@ -379,7 +379,6 @@ function deleteImage($link, $articleID)
 
 function resize($file, $type, $directory, $rotate = null, $quality = null)
 {
-    ;
 // Функция изменения размера
 // Изменяет размер изображения в зависимости от type:
 //    type = 1 - эскиз
@@ -510,4 +509,10 @@ function isAdmin($link, $email)
     $isOrNot = mysqli_fetch_assoc($result);
     return $isOrNot["admin"];
 
+}
+
+function redirect($link)
+{
+    $link = "Location: " . $link;
+    header($link);
 }
