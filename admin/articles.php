@@ -492,8 +492,8 @@ function checkUser($link, $email, $password)
     $email = trim($email);
     $password = trim($password);
 
-    $q = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($link, $q);
+    $query = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($link, $query);
     if ($is = mysqli_fetch_assoc($result)) {
         if (password_verify($password, $is['password']))
             return true;
