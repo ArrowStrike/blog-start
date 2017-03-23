@@ -49,7 +49,7 @@
                                     href="../pages/articles.php?category=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
-                        <div class="article__info__preview"><?php articlesIntro($art['text'], $word_limit = 10); ?>
+                        <div class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10); ?>
                         </div>
                     </div>
                 </article>
@@ -73,7 +73,7 @@
                     <div class="article__info">
                         <a href="../pages/article.php?id=<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
                         <div class="article__info__meta"></div>
-                        <div class="article__info__preview"><?php articlesIntro($comment['text'], $word_limit = 10); ?>
+                        <div class="article__info__preview"><?php introArticle($comment['text'], $word_limit = 10); ?>
                         </div>
                     </div>
                 </article>
