@@ -120,7 +120,7 @@ require_once "start.php";
                             <tr id="form">
                                 <td><?= $com['pubdate'] ?></td>
                                 <td><?= $com['author'] ?></td>
-                                <td><?= articlesIntro($com['text'], 80) ?></td>
+                                <td><?= introArticle($com['text'], 80) ?></td>
                                 <td>
                                     <a href="index.php?action=deleteComment&id=<?= $com['id'] ?>&articleID=<?= $_GET['id'] ?>#form">Удалить</a>
                                 </td>

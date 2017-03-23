@@ -89,7 +89,7 @@ require_once "start.php";
                             <tr>
                                 <td><?= $elem['pubdate'] ?></td>
                                 <td><?= $elem['category_id'] ?></td>
-                                <td><?= articlesIntro($elem['title'], 80) ?></td>
+                                <td><?= introArticle($elem['title'], 80) ?></td>
                                 <td>
                                     <a href="index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
                                 </td>
@@ -120,7 +120,7 @@ require_once "start.php";
                             <tr>
                                 <td><?= $article['pubdate'] ?></td>
                                 <td><?= $article['category_id'] ?></td>
-                                <td><?= articlesIntro($article['title'], 80) ?></td>
+                                <td><?= introArticle($article['title'], 80) ?></td>
                                 <td>
                                     <a href="index.php?action=edit&id=<?= $article['id'] ?>">Редактировать</a>
                                 </td>
