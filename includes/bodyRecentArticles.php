@@ -27,7 +27,7 @@
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php articlesIntro($art['text'], $word_limit = 10);  ?>
+                            class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10);  ?>
                         </div>
                     </div>
                 </article>
