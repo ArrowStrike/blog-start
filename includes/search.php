@@ -77,7 +77,7 @@
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php articlesIntro($match['text'], $word_limit = 10); ?>
+                            class="article__info__preview"><?php introArticle($match['text'], $word_limit = 10); ?>
                         </div>
                     </div>
                 </article>
