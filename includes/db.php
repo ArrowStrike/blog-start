@@ -23,7 +23,7 @@ if ($connection == false) {
     echo mysqli_connect_error();
     exit();
 }
-function articlesIntro($text, $word_limit = 15)
+function introArticle($text, $word_limit = 15)
 {
     $words = explode(' ', $text, ($word_limit + 1));
     $words_in_text = count(explode(' ', $text));
