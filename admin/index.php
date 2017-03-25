@@ -1,6 +1,6 @@
 <?php
 require_once("database.php");
-require_once("articles.php");
+require_once("functions.php");
 
 $link = db_connect();
 $version = 1;

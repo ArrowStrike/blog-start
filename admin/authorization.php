@@ -6,7 +6,7 @@
  * Time: 14:56
  */
 require_once "database.php";
-require_once "articles.php";
+require_once "functions.php";
 session_start();
 $link = db_connect();
 $email = htmlspecialchars($_POST["email"]);

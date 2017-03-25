@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "articles.php";
+require_once "functions.php";
 require_once "database.php";
 $link = db_connect();
 
