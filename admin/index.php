@@ -84,7 +84,7 @@ if ($action != null) {
         redirect('index.php?action=edit&id=' . $articleID);
     }
     if ($action == 'deleteCategory') {
-        $categories = categoryDelete($link, (int)$_POST['category_id']);
+        $categories = deleteCategory($link, (int)$_POST['category_id']);
         redirect("index.php");
     }
     if ($action == 'addCategory') {
