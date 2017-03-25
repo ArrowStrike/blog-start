@@ -12,7 +12,7 @@
     <div class="block__content">
         <form class="form" action="../pages/articles.php?search=<?php echo $cat['id']; ?>">
         <div class="form__group">
-                    <input type="text" class="form__control" name="search" placeholder="Введите слово"
+                    <input type="text" class="form__control" name="search" placeholder="Введите запрос"
                            value="" required>
         </div>
         <input type="submit" class="form__control"
