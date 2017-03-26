@@ -12,16 +12,9 @@ if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
 
 <!DOCTYPE html>
 <hmtl>
-    <head>
-        <meta charset="utf-8">
-        <title>Админка блога Влада</title>
-        <link rel="stylesheet" href="../media/css/style.css?version=<?php echo $version ?>">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/avgrund.css">
-        <link rel="shortcut icon" href="/media/images/books.ico" type="image/x-icon">
-    </head>
+    <?php
+    require "links.php";
+    ?>
     <body>
     <div class="container">
         <!-- Header (navbar) -->
@@ -31,7 +24,7 @@ if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
                     <div class="container">
                         <nav class="header__top__menu">
                             <ul>
-                                <li><a href="../index.php">Перейти на сайт</a>
+                                <li><a href="/">Перейти на сайт</a>
                             </ul>
 
                         </nav>
