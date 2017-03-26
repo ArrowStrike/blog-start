@@ -1,0 +1,69 @@
+AddDefaultCharset utf-8
+Options -Indexes
+#DirectorySlash off
+
+RewriteEngine On
+#Options +FollowSymLinks
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+
+
+
+#RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+#RewriteRule ^ %1 [L,NE,R=302]
+
+
+
+#http://blog.com/pages/articles.php?category=1
+RewriteRule ^category/([0-9]+)$ pages/articles.php?category=$1 [NC,L]
+
+#http://blog.com/pages/articles.php?category=1&page=2
+RewriteRule ^category/([0-9]+)/([0-9]+)$ pages/articles.php?category=$1&page=$2 [NC,L]
+
+#http://blog.com/pages/articles.php
+RewriteRule ^articles/?$ pages/articles.php [L]
+
+#http://blog.com/pages/articles.php?page=$1
+RewriteRule ^articles/([0-9]+)$ pages/articles.php?page=$1 [NC,L]
+
+#http://blog.com/pages/article.php?id=33
+RewriteRule ^article/([0-9]+)-([a-z]+)$ pages/article.php?id=$1 [NC,L]
+
+RewriteRule ^aboutMe$ pages/aboutMe.php [NC,L]
+
+RewriteRule ^copyright$ pages/copyright.php [NC,L]
+
+#http://blog.com/admin/authPage.php
+#RewriteRule ^authorization$ admin/authPage.php [NC,L]
+
+
+#http://blog.com/category/pages/articles.php?search=%D0%BF%D1%80%D0%B8
+#RewriteRule ^search/(.+)$ ?search=$1 [NE,L,QSA]
+
+#http://blog.com/pages/articles.php?search=%D0%BF%D1%80%D0%B8&page=1
+#RewriteRule ^search/(.+)/([0-9]+)$ pages/articles.php?search=%1&page=%2 [NE,L]
+
+
+#RewriteRule ^articles/([0-9]+)/([0-9]+)$ pages/articles.php?category=$1&page=$2 [L]
+#RewriteRule ^articles/([0-9]+)/([0-9]+)$ pages/articles.php?category=$1&page=$2 [L]
+#RewriteRule ^articles/([0-9]+)/([0-9]+)$ pages/articles.php?category=$1&page=$2 [L]
+
+#Например, нужно что бы со страницы /?action=page&id=15 был редирект на /page/15/:
+#RewriteCond %{QUERY_STRING} category=(\d+) [NC]
+#RewriteCond %{QUERY_STRING} page=(\d+) [NC]
+#RewriteRule .* /%1/%2/? [R=301,L]
+#Options +FollowSymLinks
+
+#RewriteEngine On
+#RewriteBase /
+
+#RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+#RewriteRule ^ %1 [L,NE,R=302]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+#RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+#RewriteRule ^(.*)$ /public/$1 [L]
+
+#RewriteRule ^((?!public/).*)$ public/index.php?pathinfo=$1 [L,NC]
