@@ -26,7 +26,7 @@ require "includes/config.php";
                     <?php include "includes/bodyRecentArticles.php"; ?>
 
                     <div class="block">
-                        <a href="pages/articles.php?category=2">Все записи</a>
+                        <a href="category/2">Все записи</a>
                         <h3>Кулинария [Новейшее]</h3>
                         <div class="block__content">
                             <div class="articles articles__horizontal">
@@ -40,7 +40,7 @@ require "includes/config.php";
 
                     </div>
                     <div class="block">
-                        <a href="pages/articles.php?category=1">Все записи</a>
+                        <a href="category/1">Все записи</a>
                         <h3>Спорт [Новейшее]</h3>
                         <div class="block__content">
                             <div class="articles articles__horizontal">

@@ -43,7 +43,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/pages/article.php?id=<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                        <a href="/article/<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -55,7 +55,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="../pages/articles.php?category=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/category/<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
@@ -71,18 +71,18 @@
         <?php
         if ($articlesExist == true && $categoryInclude != true) {
             if ($page > 1) {
-                echo '<a href="/pages/articles.php?page=' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/articles/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/pages/articles.php?page=' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/articles/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
             }
         }
         if ($articlesExist == true && $categoryInclude == true) {
             if ($page > 1) {
-                echo '<a href="/pages/articles.php?category=' . (int)$_GET['category'] . '&page=' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/category/' . (int)$_GET['category'] . '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/pages/articles.php?category=' . (int)$_GET['category'] . '&page=' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/category/' . (int)$_GET['category'] . '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
             }
         }
         ?>

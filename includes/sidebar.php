@@ -10,7 +10,7 @@
     <h3>Поиск статьи по отрывку</h3>
 
     <div class="block__content">
-        <form class="form" action="../pages/articles.php?search=<?php echo $cat['id']; ?>">
+        <form class="form" action="/articles/">
         <div class="form__group">
                     <input type="text" class="form__control" name="search" placeholder="Введите запрос"
                            value="" required>
@@ -34,7 +34,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="../pages/article.php?id=<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                        <a href="/article/<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -46,7 +46,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="../pages/articles.php?category=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/category/<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10); ?>
@@ -71,7 +71,7 @@
                     <div class="article__image"
                          style="background-image: url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);"></div>
                     <div class="article__info">
-                        <a href="../pages/article.php?id=<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
+                        <a href="/article/<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
                         <div class="article__info__meta"></div>
                         <div class="article__info__preview"><?php introArticle($comment['text'], $word_limit = 10); ?>
                         </div>

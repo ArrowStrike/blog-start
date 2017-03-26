@@ -12,9 +12,9 @@ require "config.php";
             <nav class="header__top__menu">
                 <ul>
                     <li><a href="/">Главная</a></li>
-                    <li><a href="../pages/aboutMe.php">Обо мне</a></li>
+                    <li><a href="/aboutMe">Обо мне</a></li>
                     <li><a href="<?php echo $config['vk_url']; ?>" target="_blank">Я Вконтакте</a></li>
-                    <li><a href="../admin">Панель администратора</a></li>
+                    <li><a href="/admin/">Панель администратора</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,7 +34,7 @@ require "config.php";
                     <?php
                     foreach ($categories as $cat) {
                         ?>
-                        <li><a href="../pages/articles.php?category=<?php echo $cat['id']; ?>"><?php echo $cat['title']; ?></a>
+                        <li><a href="/category/<?php echo $cat['id']; ?>"><?php echo $cat['title']; ?></a>
                         </li>
                         <?php
                     }

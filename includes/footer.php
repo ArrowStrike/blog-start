@@ -6,9 +6,9 @@
         <nav class="footer__menu">
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="/pages/aboutMe.php">Обо мне</a></li>
+                <li><a href="/aboutMe">Обо мне</a></li>
                 <li><a href="<?php echo $config['vk_url']; ?>">Я Вконтакте</a></li>
-                <li><a href="/pages/copyright.php">Правообладателям</a></li>
+                <li><a href="/copyright">Правообладателям</a></li>
             </ul>
         </nav>
     </div>

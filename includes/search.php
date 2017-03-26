@@ -35,7 +35,7 @@
                         $matchFound[] = $foundStr;
                     }
                 } else {
-                    $matchFound = '<p>По вашему запросу ниодной статьи не найдено.</p>';
+                    $matchFound = '<p>По запросу "'.$keyWord.'" ниодной статьи не найдено.</p>';
                 }
                 $totalCountArticles = mysqli_query($connection, "SELECT COUNT(id) AS total_count FROM articles WHERE title LIKE '%$keyWord%'
                   OR text LIKE '%$keyWord%'");
@@ -61,7 +61,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/pages/article.php?id=<?php echo $match['id']; ?>"><?php echo $match['title']; ?></a>
+                        <a href="/article/<?php echo $match['id']; ?>"><?php echo $match['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -73,7 +73,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="../pages/articles.php?category=<?php echo $match['category_id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/category/<?php echo $match['category_id']; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
@@ -95,10 +95,10 @@
         }
 
         if ($page > 1) {
-            echo '<a href="/pages/articles.php?search='. $keyWord. '&page='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+            echo '<a href="/articles/?search='. $keyWord. '&page='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
         }
         if ($page < $totalPages) {
-            echo '<a href="/pages/articles.php?search='. $keyWord. '&page='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+            echo '<a href="/articles/?search='. $keyWord. '&page='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
         }
         ?>
 
