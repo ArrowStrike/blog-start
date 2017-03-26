@@ -49,7 +49,7 @@ VALUES ('" . $postData['name'] . "','" . $postData['nickname'] . "','" . $postDa
                     <div class="article__image"
                          style="background-image: url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);"></div>
                     <div class="article__info">
-                        <a href="../pages/article.php?id=<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
+                        <a href="/article/<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
                         <div
                             class="article__info__meta"><?php echo date('H:i d-m-y', strtotime($comment['pubdate'])); ?></div>
                         <div
