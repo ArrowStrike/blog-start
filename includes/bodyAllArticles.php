@@ -43,7 +43,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php echo $art['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -55,7 +55,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/category/<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/category/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
@@ -79,10 +79,10 @@
         }
         if ($articlesExist == true && $categoryInclude == true) {
             if ($page > 1) {
-                echo '<a href="/category/' . (int)$_GET['category'] . '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/category/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/category/' . (int)$_GET['category'] . '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/category/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
             }
         }
         ?>

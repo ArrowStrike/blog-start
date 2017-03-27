@@ -7,8 +7,8 @@
     //текущая страница
     if (isset($_GET['search'])) {
 
-        if (isset($_GET['page'])) {
-            $page = (int)$_GET['page'];
+        if (isset($_GET['p'])) {
+            $page = (int)$_GET['p'];
         }
 
         $keyWord = $_GET['search'];
@@ -61,7 +61,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $match['id']; ?>"><?php echo $match['title']; ?></a>
+                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php echo $match['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -73,7 +73,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/category/<?php echo $match['category_id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/category/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
@@ -95,10 +95,10 @@
         }
 
         if ($page > 1) {
-            echo '<a href="/articles/?search='. $keyWord. '&page='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+            echo '<a href="/articles?search='. $keyWord. '&p='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
         }
         if ($page < $totalPages) {
-            echo '<a href="/articles/?search='. $keyWord. '&page='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+            echo '<a href="/articles?search='. $keyWord. '&p='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
         }
         ?>
 

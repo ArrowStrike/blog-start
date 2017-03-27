@@ -3,7 +3,7 @@
 
     <div class="block__content">
         <form class="form" method="POST"
-              action="article.php?id=<?php echo $art['id']; ?>#comment-add-form">
+              action="/article/<?php echo $art['id']."-".translit($art['title']); ?>#comment-add-form">
           <?php  if (empty($errors)) {
               echo '<span style="color: green; font-weight:bold; margin-bottom: 10px; display: block; " > Комментарий успешно добавлен!</span>';
           }

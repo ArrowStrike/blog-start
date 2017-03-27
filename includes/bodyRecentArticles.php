@@ -11,7 +11,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']; ?>"><?php echo $art['title']; ?></a>
+                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php echo $art['title']; ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -23,7 +23,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="category/<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="category/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
