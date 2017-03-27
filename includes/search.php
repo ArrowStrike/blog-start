@@ -73,7 +73,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/category/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div

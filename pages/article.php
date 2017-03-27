@@ -33,7 +33,6 @@ require "../includes/config.php";
                                 </div>
                             </div>
                         </div>
-
                     </section>
                     <section class="content__right col-md-4">
                         <?php include "../includes/sidebar.php"; ?>

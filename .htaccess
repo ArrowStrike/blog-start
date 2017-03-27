@@ -15,10 +15,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 
 #http://blog.com/pages/articles.php?category=1
-RewriteRule ^category/([0-9]+)-?([0-9a-z-]+)?$ pages/articles.php?category=$1 [NC,L]
+RewriteRule ^([0-9]+)-?([0-9a-z-]+)?$ pages/articles.php?category=$1 [NC,L]
 
 #http://blog.com/pages/articles.php?category=1&page=2
-RewriteRule ^category/([0-9]+)-?([0-9a-z-]+)?/([0-9]+)$ pages/articles.php?category=$1&page=$3 [NC,L]
+RewriteRule ^([0-9]+)-?([0-9a-z-]+)?/([0-9]+)$ pages/articles.php?category=$1&page=$3 [NC,L]
 
 #http://blog.com/pages/articles.php
 RewriteRule ^articles/?$ pages/articles.php [L]

@@ -55,7 +55,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/category/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div
@@ -79,10 +79,10 @@
         }
         if ($articlesExist == true && $categoryInclude == true) {
             if ($page > 1) {
-                echo '<a href="/category/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/category/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
             }
         }
         ?>

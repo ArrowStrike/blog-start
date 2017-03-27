@@ -46,7 +46,7 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/category/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10); ?>
