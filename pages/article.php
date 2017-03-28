@@ -54,13 +54,12 @@ require "../includes/config.php";
 
                             <h3><?php echo $art['title']; ?></h3>
                             <div class="block__content">
-                                <?php if ($art['image'] != null&&$art['image'] != 'default.jpg') { ?>
+                                <?php if ($art['image'] != null && $art['image'] != 'default.jpg') { ?>
                                     <div class="images"><img src="/static/images/<?php echo $art['image']; ?>"
                                                              style="max-width: 100%"></div><?php } ?>
                                 <div class="full-text">
                                     <?php echo $art['text']; ?>
                                 </div>
-
                             </div>
                             <br>
                             <a>Опубликовано: <?php echo date('d-m-y H:i', strtotime($art['pubdate'])); ?> </a>

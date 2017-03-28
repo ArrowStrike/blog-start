@@ -38,7 +38,7 @@ require "../includes/config.php";
         </div>
     </div>
 
-    <? include "../includes/footer.php";?>
+    <? include "../includes/footer.php"; ?>
 
 </div>
 

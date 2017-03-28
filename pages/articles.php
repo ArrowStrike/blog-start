@@ -25,13 +25,10 @@ require "../includes/config.php";
                     <?php
                     if (isset($_GET['search'])) {
                         include "../includes/search.php";
-                     }
-                    else{
+                    } else {
                         include "../includes/bodyAllArticles.php";
                     }
                     ?>
-
-
                 </section>
                 <section class="content__right col-md-4">
 
