@@ -23,44 +23,19 @@ if ($connection == false) {
     echo mysqli_connect_error();
     exit();
 }
-function introArticle($text, $word_limit, $size)
+
+function introArticle($text, $size)
 {
-    $textSize=mb_strlen($text);
-    if ($textSize>$size){
+    $textSize = mb_strlen($text);
+    if ($textSize > $size) {
         $text = mb_substr($text, 0, $size);
-        $words = explode(' ', $text, ($word_limit + 1));
-        array_pop($words);
-        echo implode(' ', $words) . '...';
-    }
-    else {
-        $words = explode(' ', $text, ($word_limit + 1));
-        $words_in_text = count(explode(' ', $text));
-        if (count($words) > $word_limit)
-            array_pop($words);
-        if ($words_in_text > $word_limit) {
-            echo implode(' ', $words) . '...';
-        } else echo implode(' ', $words);
-    }
+        $words2 = explode(' ', $text);
+        array_pop($words2);
+        echo implode(' ', $words2) . '...';
+    } else
+        echo $text;
 }
-/*
-{
-    $textSize=strlen($text);
-    if ($textSize>50){
-        $text = mb_substr($text, 0, 50);
-        $words = explode(' ', $text, ($word_limit + 1));
-        array_pop($words);
-        echo implode(' ', $words) . '...';
-    }
-    else {
-        $words = explode(' ', $text, ($word_limit + 1));
-        $words_in_text = count(explode(' ', $text));
-        if (count($words) > $word_limit)
-            array_pop($words);
-        if ($words_in_text > $word_limit) {
-            echo implode(' ', $words) . '...';
-        } else echo implode(' ', $words);
-    }
-}*/
+
 function translit($title)
 {
 

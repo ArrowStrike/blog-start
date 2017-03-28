@@ -61,7 +61,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php introArticle($match['title'], $word_limit = 7, 50) ?></a>
+                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php introArticle($match['title'], 50) ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -77,7 +77,7 @@
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php introArticle($match['text'], $word_limit = 10,100); ?>
+                            class="article__info__preview"><?php introArticle($match['text'],100); ?>
                         </div>
                     </div>
                 </article>

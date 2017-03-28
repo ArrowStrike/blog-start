@@ -115,7 +115,7 @@ require_once "start.php";
                             <tr id="form">
                                 <td><?= $com['pubdate'] ?></td>
                                 <td><?= $com['author'] ?></td>
-                                <td><?= introArticle($com['text'],10,50) ?></td>
+                                <td><?= introArticle($com['text'],50) ?></td>
                                 <td>
                                     <a href="index.php?action=deleteComment&id=<?= $com['id'] ?>&articleID=<?= $_GET['id'] ?>#form">Удалить</a>
                                 </td>

@@ -154,8 +154,22 @@ else
 echo implode('.', $sentences);
 }*/
 
+//точки по лимиту символов, с убиранием последнего слова
+function introArticle($text, $size)
+{
+    $textSize = mb_strlen($text);
+    if ($textSize > $size) {
+        $text = mb_substr($text, 0, $size);
+        $words2 = explode(' ', $text);
+        array_pop($words2);
+        echo implode(' ', $words2) . '...';
+    } else
+        echo $text;
+}
+
 //точки по лимиту символов
 //точки по лимиту слов
+/*
 function introArticle($text, $word_limit, $size)
 {
     $textSize = mb_strlen($text);
@@ -174,7 +188,7 @@ function introArticle($text, $word_limit, $size)
         } else echo implode(' ', $words);
     }
 }
-
+*/
 
 function getCategories($link)
 {
