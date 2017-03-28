@@ -73,5 +73,9 @@ function translit($title)
     return $converted;
 }
 
-
+function redirect($link)
+{
+    $link = "Location: " . $link;
+    header($link);
+}
 
