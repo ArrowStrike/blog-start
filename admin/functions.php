@@ -139,20 +139,10 @@ function deleteArticle($link, $id)
     return mysqli_affected_rows($link);
 }
 
-//точки по лимиту слов
-function introArticle($text, $word_limit = 15)
-{
-    $words = explode(' ', $text, ($word_limit + 1));
-    $words_in_text = count(explode(' ', $text));
-    if (count($words) > $word_limit)
-        array_pop($words);
-    if ($words_in_text > $word_limit)
-        echo implode(' ', $words) . ' ...';
-    else echo implode(' ', $words);
-}
+
 
 //точки по лимиту предложений
-/*function articlesIntro($text, $sentencesLimit = 1)
+/*function articlesIntroSent($text, $sentencesLimit = 1)
 {
 $sentences = explode('.', $text, ($sentencesLimit + 1));
 $sentencesInText = count(explode('.', $text));
@@ -165,13 +155,26 @@ echo implode('.', $sentences);
 }*/
 
 //точки по лимиту символов
-/* {
-if (strlen($text)>500)
-return mb_substr($text, 0, 500)."...";
-else return $text;
+//точки по лимиту слов
+function introArticle($text, $word_limit, $size)
+{
+    $textSize = mb_strlen($text);
+    if ($textSize > $size) {
+        $text = mb_substr($text, 0, $size);
+        $words = explode(' ', $text, ($word_limit + 1));
+        array_pop($words);
+        echo implode(' ', $words) . '...';
+    } else {
+        $words = explode(' ', $text, ($word_limit + 1));
+        $words_in_text = count(explode(' ', $text));
+        if (count($words) > $word_limit)
+            array_pop($words);
+        if ($words_in_text > $word_limit) {
+            echo implode(' ', $words) . '...';
+        } else echo implode(' ', $words);
+    }
 }
-strrpos
-function do_excerpt*/
+
 
 function getCategories($link)
 {
