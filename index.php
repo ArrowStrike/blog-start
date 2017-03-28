@@ -26,13 +26,13 @@ require "includes/config.php";
                     <?php include "includes/bodyRecentArticles.php"; ?>
 
                     <div class="block">
-                        <a href="/2">Все записи</a>
-                        <h3>Кулинария [Новейшее]</h3>
+                        <a href="/5-life-style">Все записи</a>
+                        <h3>Life Style [Новейшее]</h3>
                         <div class="block__content">
                             <div class="articles articles__horizontal">
 
                                 <?php
-                                $articles = mysqli_query($connection, "SELECT * FROM articles WHERE category_id=2 ORDER BY id DESC LIMIT 10");
+                                $articles = mysqli_query($connection, "SELECT * FROM articles WHERE category_id=5 ORDER BY id DESC LIMIT 10");
                                 include "includes/bodyCategories.php"; ?>
 
                             </div>
@@ -40,8 +40,8 @@ require "includes/config.php";
 
                     </div>
                     <div class="block">
-                        <a href="/1">Все записи</a>
-                        <h3>Спорт [Новейшее]</h3>
+                        <a href="/1-it">Все записи</a>
+                        <h3>IT [Новейшее]</h3>
                         <div class="block__content">
                             <div class="articles articles__horizontal">
 
