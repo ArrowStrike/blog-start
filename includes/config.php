@@ -6,7 +6,7 @@
  * Time: 17:39
  */
 $config = array(
-    'version' => 1,
+    'version' => 2,
     'title' => 'Блог Влада',
     'vk_url' => 'https://vk.com/id52976219',
     'db' => array(
