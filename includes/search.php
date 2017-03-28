@@ -61,7 +61,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php echo $match['title']; ?></a>
+                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php introArticle($match['title'], $word_limit = 7, 50) ?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -77,7 +77,7 @@
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php introArticle($match['text'], $word_limit = 10); ?>
+                            class="article__info__preview"><?php introArticle($match['text'], $word_limit = 10,100); ?>
                         </div>
                     </div>
                 </article>
@@ -95,10 +95,10 @@
         }
 
         if ($page > 1) {
-            echo '<a href="/articles?search='. $keyWord. '&p='.($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+            echo '<a href="/articles?search='. $keyWord. '&p='.($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
         }
         if ($page < $totalPages) {
-            echo '<a href="/articles?search='. $keyWord. '&p='. ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+            echo '<a href="/articles?search='. $keyWord. '&p='. ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
         }
         ?>
 

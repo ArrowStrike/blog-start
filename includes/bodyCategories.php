@@ -5,7 +5,7 @@ while ($art = mysqli_fetch_assoc($articles)) {
         <div class="article__image"
              style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
         <div class="article__info">
-            <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php echo $art['title']; ?></a>
+            <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php introArticle($art['title'], $word_limit = 7, 50) ?></a>
             <div class="article__info__meta">
                 <?php
                 $art_cat = false;
@@ -21,7 +21,7 @@ while ($art = mysqli_fetch_assoc($articles)) {
                 </small>
             </div>
             <div
-                class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10); ?>
+                class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10, 70); ?>
             </div>
         </div>
     </article>

@@ -43,7 +43,7 @@
                     <div class="article__image"
                          style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php echo $art['title']; ?></a>
+                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php introArticle($art['title'], $word_limit = 7, 50);?></a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -59,7 +59,7 @@
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10); ?>
+                            class="article__info__preview"><?php introArticle($art['text'], $word_limit = 10, 70); ?>
                         </div>
                     </div>
                 </article>
@@ -71,18 +71,18 @@
         <?php
         if ($articlesExist == true && $categoryInclude != true) {
             if ($page > 1) {
-                echo '<a href="/articles/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/articles/' . ($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/articles/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/articles/' . ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
             }
         }
         if ($articlesExist == true && $categoryInclude == true) {
             if ($page > 1) {
-                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo; Предыдущая страница</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">Следующая страница &raquo;</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
             }
         }
         ?>
