@@ -4,11 +4,10 @@ require_once("functions.php");
 
 $link = db_connect();
 $version = 1;
-//$article['title'] = '';
-//$article['text'] = '';
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
-
-if ($_POST['searchArticle']&&!empty($_POST)) {
+if (isset($_POST['searchArticle'])&&!empty($_POST)) {
         $matchFound = searchArticles($link, $_POST['searchArticle']);
 }
 

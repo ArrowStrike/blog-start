@@ -66,7 +66,7 @@ require_once "start.php";
                 </label>
                 <input type="submit" value="Найти" class="btn">
             </form>
-            <?php if ($_POST['searchArticle'] != null) {
+            <?php if (isset($_POST['searchArticle'])) {
                 if (is_array($matchFound)) {
                     echo '<p>По запросу "<b>' . $_POST['searchArticle'] . '</b>"  найдено совпадений: ' . count($matchFound) . '</p>';
                     ?>
