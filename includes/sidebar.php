@@ -11,12 +11,12 @@
 
     <div class="block__content">
         <form class="form" action="/articles">
-        <div class="form__group">
-                    <input type="text" class="form__control" name="search" placeholder="Введите запрос"
-                           value="" required>
-        </div>
-        <input type="submit" class="form__control"
-                     value="Найти">
+            <div class="form__group">
+                <input type="text" class="form__control" name="search" placeholder="Введите запрос"
+                       value="" required>
+            </div>
+            <input type="submit" class="form__control"
+                   value="Найти">
         </form>
     </div>
 
@@ -31,10 +31,15 @@
             while ($art = mysqli_fetch_assoc($articles)) {
                 ?>
                 <article class="article">
-                    <div class="article__image"
-                         style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
+                    <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                        <div class="article__image"
+                             style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);">
+                        </div>
+                    </a>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php introArticle($art['title'], 50)?></a>
+                        <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                            <?php introArticle($art['title'], 50) ?>
+                        </a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -46,7 +51,8 @@
                             }
                             ?>
                             <small>Категория: <a
-                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
+                                    href="/<?php echo $art_cat['id'] . "-" . translit($art_cat['title']);; ?>">
+                                    <?php echo $art_cat['title']; ?></a>
                             </small>
                         </div>
                         <div class="article__info__preview"><?php introArticle($art['text'], 70); ?>
@@ -69,9 +75,13 @@
                 ?>
                 <article class="article">
                     <div class="article__image"
-                         style="background-image: url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);"></div>
+                         style="background-image:
+                             url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);">
+                    </div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
+                        <a href="/article/<?php echo $comment['articles_id']; ?>">
+                            <?php echo $comment['author']; ?>
+                        </a>
                         <div class="article__info__meta"></div>
                         <div class="article__info__preview"><?php introArticle($comment['text'], 70); ?>
                         </div>

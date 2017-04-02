@@ -82,13 +82,15 @@ require_once "start.php";
                             <tr>
                                 <td><?= $elem['pubdate'] ?></td>
                                 <td><?= $elem['category_id'] ?></td>
-                                <td><?= introArticle($elem['title'],50);?></td>
+                                <td><?= introArticle($elem['title'], 50); ?></td>
                                 <td>
                                     <a href="index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
                                 </td>
                                 <td>
                                     <a href="index.php?action=delete&id=<?= $elem['id'] ?>"
-                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">Удалить</a>
+                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">
+                                        Удалить
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -113,13 +115,17 @@ require_once "start.php";
                             <tr>
                                 <td><?= $article['pubdate'] ?></td>
                                 <td><?= $article['category_id'] ?></td>
-                                <td><?= introArticle($article['title'],50) ?></td>
+                                <td><?= introArticle($article['title'], 50) ?></td>
                                 <td>
-                                    <a href="index.php?action=edit&id=<?= $article['id'] ?>">Редактировать</a>
+                                    <a href="index.php?action=edit&id=<?= $article['id'] ?>">
+                                        Редактировать
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="index.php?action=delete&id=<?= $article['id'] ?>&page=<?= $articles[0]['page'] ?>"
-                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">Удалить</a>
+                                       title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">
+                                        Удалить
+                                    </a>
                                 </td>
                             </tr>
                             <?php
@@ -133,10 +139,12 @@ require_once "start.php";
             <?php } else echo "В данный момент нет ниодной статьи";
 
             if ($articles[0]['page'] > 1) {
-                echo '<a href="index.php?page=' . ($articles[0]['page'] - 1) . '"><div class="paginationLeft">&laquo;'. ($articles[0]['page'] - 1) .' страница</div></a>';
+                echo '<a href="index.php?page=' . ($articles[0]['page'] - 1) . '">
+                <div class="paginationLeft">&laquo;' . ($articles[0]['page'] - 1) . ' страница</div></a>';
             }
             if ($articles[0]['page'] < $articles[0]['totalPages']) {
-                echo '<a href="index.php?page=' . ($articles[0]['page'] + 1) . '"><div class="paginationRight">'. ($articles[0]['page'] + 1) .'  страница &raquo;</div></a>';
+                echo '<a href="index.php?page=' . ($articles[0]['page'] + 1) . '">
+                <div class="paginationRight">' . ($articles[0]['page'] + 1) . '  страница &raquo;</div></a>';
             } ?>
 
 

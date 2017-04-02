@@ -16,7 +16,7 @@
         $keyWord = trim($keyWord);
         $keyWord = mysqli_real_escape_string($connection, $keyWord);
         $keyWord = htmlspecialchars($keyWord);
-        $totalCount=0;//количество записей(статей)
+        $totalCount = 0;//количество записей(статей)
 
         if (!empty($keyWord)) {
             if (mb_strlen($keyWord) < 3) {
@@ -35,10 +35,12 @@
                         $matchFound[] = $foundStr;
                     }
                 } else {
-                    $matchFound = '<p>По запросу "'.$keyWord.'" ниодной статьи не найдено.</p>';
+                    $matchFound = '<p>По запросу "' . $keyWord . '" ниодной статьи не найдено.</p>';
                 }
-                $totalCountArticles = mysqli_query($connection, "SELECT COUNT(id) AS total_count FROM articles WHERE title LIKE '%$keyWord%'
-                  OR text LIKE '%$keyWord%'");
+                $totalCountArticles = mysqli_query($connection,
+                    "SELECT COUNT(id) AS total_count 
+                    FROM articles WHERE title LIKE '%$keyWord%'
+                    OR text LIKE '%$keyWord%'");
                 $totalCount = mysqli_fetch_assoc($totalCountArticles);
                 $totalCount = $totalCount['total_count'];
             }
@@ -58,10 +60,15 @@
             foreach ($matchFound as $match) {
                 ?>
                 <article class="article">
-                    <div class="article__image"
-                         style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);"></div>
+                    <a href="/article/<?php echo $match['id'] . "-" . translit($match['title']); ?>">
+                        <div class="article__image"
+                             style="background-image: url(/static/imagesPreview/<?php echo $match['image']; ?>);">
+                        </div>
+                    </a>
                     <div class="article__info">
-                        <a href="/article/<?php echo $match['id']."-".translit($match['title']); ?>"><?php introArticle($match['title'], 50) ?></a>
+                        <a href="/article/<?php echo $match['id'] . "-" . translit($match['title']); ?>">
+                            <?php introArticle($match['title'], 50) ?>
+                        </a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -72,12 +79,14 @@
                                 }
                             }
                             ?>
-                            <small>Категория: <a
-                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']);; ?>"><?php echo $art_cat['title']; ?></a>
+                            <small>Категория:
+                                <a href="/<?php echo $art_cat['id'] . "-" . translit($art_cat['title']);; ?>">
+                                    <?php echo $art_cat['title']; ?>
+                                </a>
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php introArticle($match['text'],100); ?>
+                            class="article__info__preview"><?php introArticle($match['text'], 100); ?>
                         </div>
                     </div>
                 </article>
@@ -95,10 +104,12 @@
         }
 
         if ($page > 1) {
-            echo '<a href="/articles?search='. $keyWord. '&p='.($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
+            echo '<a href="/articles?search=' . $keyWord . '&p=' . ($page - 1) . '">
+            <div class="paginationLeft">&laquo;' . ($page - 1) . ' страница</div></a>';
         }
         if ($page < $totalPages) {
-            echo '<a href="/articles?search='. $keyWord. '&p='. ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
+            echo '<a href="/articles?search=' . $keyWord . '&p=' . ($page + 1) . '">
+            <div class="paginationRight">' . ($page + 1) . ' страница &raquo;</div></a>';
         }
         ?>
 

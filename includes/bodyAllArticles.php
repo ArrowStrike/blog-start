@@ -9,7 +9,8 @@
     $categoryInclude = false;
     $totalCountQuery = mysqli_query($connection, "SELECT COUNT(id) AS total_count FROM articles");
     if (isset($_GET['category'])) {
-        $totalCountQuery = mysqli_query($connection, "SELECT COUNT(category_id) AS total_count FROM articles WHERE category_id=" . (int)$_GET['category']);
+        $totalCountQuery = mysqli_query($connection, "SELECT COUNT(category_id) AS total_count 
+                                                      FROM articles WHERE category_id=" . (int)$_GET['category']);
         $categoryInclude = true;
     }
 
@@ -24,7 +25,8 @@
     $offset = ($countOfArticlesPerPage * $page) - $countOfArticlesPerPage; //сдвиг
     $articles = mysqli_query($connection, "SELECT * FROM articles ORDER BY id DESC LIMIT $offset,$countOfArticlesPerPage");
     if (isset($_GET['category'])) {
-        $query = "SELECT * FROM articles WHERE category_id=" . (int)$_GET['category'] . " ORDER BY id DESC LIMIT $offset,$countOfArticlesPerPage";
+        $query = "SELECT * FROM articles WHERE category_id=" . (int)$_GET['category'] .
+            " ORDER BY id DESC LIMIT $offset,$countOfArticlesPerPage";
         $articles = mysqli_query($connection, $query);
     }
     $articlesExist = true;
@@ -40,10 +42,15 @@
             while ($art = mysqli_fetch_assoc($articles)) {
                 ?>
                 <article class="article">
-                    <div class="article__image"
-                         style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
+                    <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                        <div class="article__image"
+                             style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);">
+                        </div>
+                    </a>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php introArticle($art['title'], 50);?></a>
+                        <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                            <?php introArticle($art['title'], 50); ?>
+                        </a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -54,8 +61,10 @@
                                 }
                             }
                             ?>
-                            <small>Категория: <a
-                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
+                            <small>Категория:
+                                <a href="/<?php echo $art_cat['id'] . "-" . translit($art_cat['title']); ?>">
+                                    <?php echo $art_cat['title']; ?>
+                                </a>
                             </small>
                         </div>
                         <div
@@ -71,18 +80,24 @@
         <?php
         if ($articlesExist == true && $categoryInclude != true) {
             if ($page > 1) {
-                echo '<a href="/articles/' . ($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
+                echo '<a href="/articles/' . ($page - 1) . '">
+                <div class="paginationLeft">&laquo;' . ($page - 1) . ' страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/articles/' . ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
+                echo '<a href="/articles/' . ($page + 1) . '">
+                <div class="paginationRight">' . ($page + 1) . ' страница &raquo;</div></a>';
             }
         }
         if ($articlesExist == true && $categoryInclude == true) {
             if ($page > 1) {
-                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page - 1) . '"><div class="paginationLeft">&laquo;'. ($page - 1) .' страница</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] . "-" .
+                    translit($art_cat['title']) . '/' . ($page - 1) . '">
+                    <div class="paginationLeft">&laquo;' . ($page - 1) . ' страница</div></a>';
             }
             if ($page < $totalPages) {
-                echo '<a href="/' . (int)$_GET['category'] ."-".translit($art_cat['title']). '/' . ($page + 1) . '"><div class="paginationRight">'. ($page + 1) .' страница &raquo;</div></a>';
+                echo '<a href="/' . (int)$_GET['category'] . "-" .
+                    translit($art_cat['title']) . '/' . ($page + 1) . '">
+                    <div class="paginationRight">' . ($page + 1) . ' страница &raquo;</div></a>';
             }
         }
         ?>

@@ -26,7 +26,12 @@
                 }
                 if (empty($errors)) {
                     mysqli_query($connection, "INSERT INTO comments (author, nickname, email, text, pubdate, articles_id) 
-VALUES ('" . $postData['name'] . "','" . $postData['nickname'] . "','" . $postData['email'] . "','" . $postData['text'] . "', NOW(), '" . $art['id'] . "')");
+                                              VALUES ('" . $postData['name'] . "',
+                                              '" . $postData['nickname'] . "',
+                                              '" . $postData['email'] . "',
+                                              '" . $postData['text'] . "',
+                                               NOW(),
+                                              '" . $art['id'] . "')");
                     //добавить коммент
 
                     unset($_POST);
@@ -39,7 +44,8 @@ VALUES ('" . $postData['name'] . "','" . $postData['nickname'] . "','" . $postDa
             }
             ?>
             <?php
-            $comments = mysqli_query($connection, "SELECT * FROM comments WHERE articles_id = " . (int)$art['id'] . " ORDER BY id DESC");
+            $comments = mysqli_query($connection, "SELECT * FROM comments 
+                                                  WHERE articles_id = " . (int)$art['id'] . " ORDER BY id DESC");
             if (mysqli_num_rows($comments) <= 0) {
                 echo "Нет комментариев!";
             }
@@ -47,13 +53,18 @@ VALUES ('" . $postData['name'] . "','" . $postData['nickname'] . "','" . $postDa
                 ?>
                 <article class="article">
                     <div class="article__image"
-                         style="background-image: url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);"></div>
+                         style="background-image:
+                             url(https://www.gravatar.com/avatar/<?php echo md5($comment['email']); ?>?s=125);">
+                    </div>
                     <div class="article__info">
-                        <a href="/article/<?php echo $comment['articles_id']; ?>"><?php echo $comment['author']; ?></a>
-                        <div
-                            class="article__info__meta"><?php echo date('H:i d-m-y', strtotime($comment['pubdate'])); ?></div>
-                        <div
-                            class="article__info__preview"><?php echo $comment['text']; ?>
+                        <a href="/article/<?php echo $comment['articles_id']; ?>">
+                            <?php echo $comment['author']; ?>
+                        </a>
+                        <div class="article__info__meta">
+                            <?php echo date('H:i d-m-y', strtotime($comment['pubdate'])); ?>
+                        </div>
+                        <div class="article__info__preview">
+                            <?php echo $comment['text']; ?>
                         </div>
                     </div>
                 </article>

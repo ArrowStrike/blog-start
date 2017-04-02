@@ -46,7 +46,8 @@ if ($action != null) {
                 deleteImage($link, $articleID);
                 uploadImage();
             }
-            editArticle($link, $articleID, (int)$_POST['category_id'], $_POST['title'], $_FILES['image']['name'], $_POST['text']);
+            editArticle($link, $articleID, (int)$_POST['category_id'], $_POST['title'],
+                        $_FILES['image']['name'], $_POST['text']);
             redirect("index.php");//переадрессация на главную страницу
         }
         $article = getArticle($link, $articleID);

@@ -8,10 +8,15 @@
             while ($art = mysqli_fetch_assoc($articles)) {
                 ?>
                 <article class="article">
-                    <div class="article__image"
-                         style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);"></div>
+                    <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                        <div class="article__image"
+                             style="background-image: url(/static/imagesPreview/<?php echo $art['image']; ?>);">
+                        </div>
+                    </a>
                     <div class="article__info">
-                        <a href="/article/<?php echo $art['id']."-".translit($art['title']); ?>"><?php introArticle($art['title'], 50) ?></a>
+                        <a href="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>">
+                            <?php introArticle($art['title'], 50) ?>
+                        </a>
                         <div class="article__info__meta">
                             <?php
                             $art_cat = false;
@@ -22,12 +27,14 @@
                                 }
                             }
                             ?>
-                            <small>Категория: <a
-                                    href="/<?php echo $art_cat['id']."-".translit($art_cat['title']); ?>"><?php echo $art_cat['title']; ?></a>
+                            <small>Категория:
+                                <a href="/<?php echo $art_cat['id'] . "-" . translit($art_cat['title']); ?>">
+                                    <?php echo $art_cat['title']; ?>
+                                </a>
                             </small>
                         </div>
                         <div
-                            class="article__info__preview"><?php introArticle($art['text'], 70);  ?>
+                            class="article__info__preview"><?php introArticle($art['text'], 70); ?>
                         </div>
                     </div>
                 </article>

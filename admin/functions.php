@@ -10,7 +10,8 @@ function allArticles($link)
 
 
 // Формируем запрос
-    $query = "SELECT title, pubdate, image, id, category_id FROM articles ORDER BY id DESC LIMIT $offset,$countOfArticlesPerPage";
+    $query = "SELECT title, pubdate, image, id, category_id 
+              FROM articles ORDER BY id DESC LIMIT $offset,$countOfArticlesPerPage";
     $result = mysqli_query($link, $query);
 
     if (!$result)
@@ -63,7 +64,8 @@ function newArticle($link, $category_id, $title, $image, $text)
         return false;
 
 // Запрос
-    $templateAdd = "INSERT INTO articles (title, category_id, pubdate, image, text) VALUES ('%s','%d', NOW(), '%s', '%s')";
+    $templateAdd = "INSERT INTO articles (title, category_id, pubdate, image, text) 
+                    VALUES ('%s','%d', NOW(), '%s', '%s')";
 
     $query = sprintf($templateAdd,
         mysqli_real_escape_string($link, $title),
@@ -206,7 +208,8 @@ function getCategories($link)
 
 function getCategory($link, $id)
 {
-    $query = "SELECT * FROM articles_categories WHERE id IN (SELECT category_id FROM articles WHERE id =" . (int)$id . ")";
+    $query = "SELECT * FROM articles_categories WHERE id IN 
+              (SELECT category_id FROM articles WHERE id =" . (int)$id . ")";
     $queryResult = mysqli_query($link, $query); //цикл повторяется в header.php
     if (!$queryResult)
         die(mysqli_error($link));
@@ -224,7 +227,8 @@ function newCategory($link, $categoryNewName)
         return false;
 
 // Запрос
-    $query = "INSERT INTO articles_categories (title) VALUES ('" . mysqli_real_escape_string($link, $categoryNewName) . "')";
+    $query = "INSERT INTO articles_categories (title)
+              VALUES ('" . mysqli_real_escape_string($link, $categoryNewName) . "')";
 
     $result = mysqli_query($link, $query);
 
@@ -269,7 +273,8 @@ function deleteCategory($link, $categoryID)
 
 
 // Запрос
-    $deleteComments = sprintf("DELETE FROM comments WHERE articles_id IN (SELECT id FROM articles WHERE category_id='" . $categoryID . "')");
+    $deleteComments = sprintf("DELETE FROM comments WHERE articles_id IN 
+                              (SELECT id FROM articles WHERE category_id='" . $categoryID . "')");
     $deleteCategoryInArticles = sprintf("DELETE FROM articles WHERE category_id='%d';", $categoryID);
     $deleteArticles = sprintf("DELETE FROM articles_categories WHERE id='%d';", $categoryID);
 
@@ -340,7 +345,6 @@ function uploadImage()
 // Проверяем размер файла
         if ($_FILES['image']['size'] > $size)
             die('Слишком большой размер файла. <a href="javascript:history.back()">Попробовать другой файл?</a>');
-
     }
     $name = resize($_FILES['image'], $type = 2, $tmpPath);
     $namePreview = resize($_FILES['image'], $type = 1, $tmpPathPreview);

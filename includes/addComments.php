@@ -3,27 +3,23 @@
 
     <div class="block__content">
         <form class="form" method="POST"
-              action="/article/<?php echo $art['id']."-".translit($art['title']); ?>#comment-add-form">
-          <?php  if (empty($errors)) {
-              echo '<span style="color: green; font-weight:bold; margin-bottom: 10px; display: block; " > Комментарий успешно добавлен!</span>';
-          }
-          else {
-              //вывести ошибку на экран
-              echo '<span style="color: red; font-weight:bold; margin-bottom: 10px; display: block; "> ' . $errors['0'] . '</span>';
-          }
-
-?>
+              action="/article/<?php echo $art['id'] . "-" . translit($art['title']); ?>#comment-add-form">
+            <?php if (empty($errors)) {
+                echo '<span style="color: green; font-weight:bold; margin-bottom: 10px; display: block; " > 
+                        Комментарий успешно добавлен!
+                      </span>';
+            } else {
+                echo '<span style="color: red; font-weight:bold; margin-bottom: 10px; display: block; "> '
+                    . $errors['0'] .
+                     '</span>';
+            }
+            ?>
             <div class="form__group">
                 <div class="row">
                     <div class="col-md-6">
                         <input type="text" class="form__control" name="name" placeholder="Имя"
                                value="<?php echo $postData['name']; ?>">
-                        <!-- <input class="form-control" type="email"  required="" placeholder="username" oninvalid="this.setCustomValidity('Please Enter valid email')"></input> -->
                     </div>
-            <!--        <div class="col-md-4">
-                        <input type="text" class="form__control" name="nickname"
-                               placeholder="Никнейм" value="<?php //echo $postData['nickname']; ?>">
-                    </div>-->
                     <div class="col-md-6">
                         <input type="text" class="form__control" name="email"
                                placeholder="Email (Не будет показан)"
@@ -32,8 +28,8 @@
                 </div>
             </div>
             <div class="form__group">
-                                        <textarea name="text" class="form__control"
-                                                  placeholder="Текст комментария ..."><?php echo $postData['text']; ?></textarea>
+               <textarea name="text" class="form__control"
+                         placeholder="Текст комментария ..."><?php echo $postData['text']; ?></textarea>
             </div>
 
             <div class="form__group">
