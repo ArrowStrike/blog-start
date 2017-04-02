@@ -32,7 +32,8 @@ require "includes/config.php";
                             <div class="articles articles__horizontal">
 
                                 <?php
-                                $articles = mysqli_query($connection, "SELECT * FROM articles WHERE category_id=5 ORDER BY id DESC LIMIT 10");
+                                $articles = mysqli_query($connection,
+                                    "SELECT * FROM articles WHERE category_id=5 ORDER BY id DESC LIMIT 10");
                                 include "includes/bodyCategories.php"; ?>
 
                             </div>
@@ -46,7 +47,8 @@ require "includes/config.php";
                             <div class="articles articles__horizontal">
 
                                 <?php
-                                $articles = mysqli_query($connection, "SELECT * FROM articles WHERE category_id=1 ORDER BY id DESC LIMIT 10");
+                                $articles = mysqli_query($connection,
+                                    "SELECT * FROM articles WHERE category_id=1 ORDER BY id DESC LIMIT 10");
                                 include "includes/bodyCategories.php"; ?>
 
                             </div>
