@@ -1,7 +1,7 @@
-Link to the site -- > http://blog.ambiweb.lv
+Link to website -- > http://blog.ambiweb.lv
 ==========================
-## Login and pass for admin 
-login -> admin
+### Login and pass for admin 
+login -> admin</br>
 pass -> admin
 
 
