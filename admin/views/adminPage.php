@@ -68,7 +68,8 @@ require_once "start.php";
             </form>
             <?php if ($_POST['searchArticle'] != null) {
                 if (is_array($matchFound)) {
-                    echo '<p>По запросу "<b>' . $_POST['searchArticle'] . '</b>"  найдено совпадений: ' . count($matchFound) . '</p>';
+                    echo '<p>По запросу "<b>' . $_POST['searchArticle'] .
+                        '</b>"  найдено совпадений: ' . count($matchFound) . '</p>';
                     ?>
                     <table class="table">
                         <tr>
