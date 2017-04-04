@@ -1,4 +1,4 @@
-<a href="http://blog.ambiweb.lv" target="_blank">Link</a> to website blog.ambiweb.lv
+Link to website -> <a href="http://blog.ambiweb.lv">blog.ambiweb.lv</a>
 ==========================
 ### Login and pass for admin 
 login -> admin</br>
