@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once "functions.php";
-require_once "database.php";
+require_once "../models/functions.php";
+require_once "../models/database.php";
 $link = db_connect();
 
 if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
-    redirect("index.php");
+    redirect("/admin/index.php");
     exit();
 }
 ?>
@@ -42,7 +42,7 @@ if (checkUser($link, $_SESSION["email"], $_SESSION["password"])) {
             }
             ?>
             <!-- Header (navbar) -->
-            <form name="auth" action="authorization.php" method="post">
+            <form name="auth" action="/admin/models/authorization.php" method="post">
                 <label><p>
                         E-mail<br>
                         <input type="text" name="email" required></p>

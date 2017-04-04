@@ -1,5 +1,5 @@
 <?php
-require_once "start.php";
+require_once "/models/start.php";
 ?>
 <!DOCTYPE html>
 <hmtl>
@@ -15,11 +15,11 @@ require_once "start.php";
                     <div class="container">
                         <nav class="header__top__menu">
                             <ul>
-                                <li><a href="index.php?action=add">
+                                <li><a href="/admin/index.php?action=add">
                                         <z><b>Добавить статью</b></z>
                                     </a>
                                 <li><a href="/">Перейти на сайт</a>
-                                <li><a href="logout.php">Выход</a>
+                                <li><a href="/admin/models/logout.php">Выход</a>
                             </ul>
 
                         </nav>
@@ -27,7 +27,7 @@ require_once "start.php";
                 </div>
             </nav>
             <div id="addart">
-                <form method="post" action="index.php?action=addCategory">
+                <form method="post" action="/admin/index.php?action=addCategory">
                     <!-- Добавление категории -->
                     <label>
                         Добавить категорию
@@ -37,7 +37,7 @@ require_once "start.php";
                     <input type="submit" value="Добавить" class="btn" name="getPost">
                 </form>
                 <br>
-                <form method="post" action="index.php?action=deleteCategory">
+                <form method="post" action="/admin/index.php?action=deleteCategory">
                     <label>
                         Удалить категорию. <br>
                         <z>ВНИМАНИЕ! Удаление категории приведет к удалению всех привязанных к ней статей, фотографий и
@@ -85,10 +85,10 @@ require_once "start.php";
                                 <td><?= $elem['category_id'] ?></td>
                                 <td><?= introArticle($elem['title'], 50); ?></td>
                                 <td>
-                                    <a href="index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
+                                    <a href="/admin/index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
                                 </td>
                                 <td>
-                                    <a href="index.php?action=delete&id=<?= $elem['id'] ?>"
+                                    <a href="/admin/index.php?action=delete&id=<?= $elem['id'] ?>"
                                        title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">
                                         Удалить
                                     </a>
@@ -118,12 +118,12 @@ require_once "start.php";
                                 <td><?= $article['category_id'] ?></td>
                                 <td><?= introArticle($article['title'], 50) ?></td>
                                 <td>
-                                    <a href="index.php?action=edit&id=<?= $article['id'] ?>">
+                                    <a href="/admin/index.php?action=edit&id=<?= $article['id'] ?>">
                                         Редактировать
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="index.php?action=delete&id=<?= $article['id'] ?>&page=<?= $articles[0]['page'] ?>"
+                                    <a href="/admin/index.php?action=delete&id=<?= $article['id'] ?>&page=<?= $articles[0]['page'] ?>"
                                        title="ВНИМАНИЕ! Удаление статьи приведет к удалению всех привязанных к ней комментариев! ">
                                         Удалить
                                     </a>
@@ -138,15 +138,8 @@ require_once "start.php";
                 </table>
 
             <?php } else echo "В данный момент нет ниодной статьи";
-
-            if ($articles[0]['page'] > 1) {
-                echo '<a href="index.php?page=' . ($articles[0]['page'] - 1) . '">
-                <div class="paginationLeft">&laquo;' . ($articles[0]['page'] - 1) . ' страница</div></a>';
-            }
-            if ($articles[0]['page'] < $articles[0]['totalPages']) {
-                echo '<a href="index.php?page=' . ($articles[0]['page'] + 1) . '">
-                <div class="paginationRight">' . ($articles[0]['page'] + 1) . '  страница &raquo;</div></a>';
-            } ?>
+            pagination($articles[0]['page'], $articles[0]['totalPages']);
+            ?>
 
 
     </div>

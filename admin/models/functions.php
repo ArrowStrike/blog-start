@@ -142,7 +142,6 @@ function deleteArticle($link, $id)
 }
 
 
-
 //точки по лимиту предложений
 /*function articlesIntroSent($text, $sentencesLimit = 1)
 {
@@ -348,11 +347,10 @@ function uploadImage()
     }
     $name = resize($_FILES['image'], $type = 2, $tmpPath);
     $namePreview = resize($_FILES['image'], $type = 1, $tmpPathPreview);
+
     copy($tmpPath . $name, $path . $name);
-// Загрузка файла и вывод сообщения
-    /* if (!@copy($tmp_path . $name, $path . $name))
-    echo '<p>Что-то пошло не так.</p>';*/
     copy($tmpPathPreview . $namePreview, $pathResize . $namePreview);
+
     unlink($tmpPath . $name);
     unlink($tmpPathPreview . $namePreview);
 }
@@ -547,4 +545,16 @@ function redirect($link)
 {
     $link = "Location: " . $link;
     header($link);
+}
+
+function pagination($page, $totalPages)
+{
+    if ($page > 1) {
+        echo '<a href="/admin/index.php?page=' . ($page - 1) . '">
+                <div class="paginationLeft">&laquo;' . ($page - 1) . ' страница</div></a>';
+    }
+    if ($page < $totalPages) {
+        echo '<a href="/admin/index.php?page=' . ($page + 1) . '">
+                <div class="paginationRight">' . ($page + 1) . '  страница &raquo;</div></a>';
+    }
 }

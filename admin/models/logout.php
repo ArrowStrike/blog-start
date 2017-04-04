@@ -8,4 +8,4 @@
 session_start();
 unset($_SESSION);
 session_destroy();
-header('Location: authPage.php');
+header('Location: ../views/authPage.php');

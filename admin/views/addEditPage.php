@@ -1,5 +1,5 @@
 <?php
-require_once "start.php";
+require_once "/models/start.php";
 ?>
 <!DOCTYPE html>
 <hmtl>
@@ -19,7 +19,7 @@ require_once "start.php";
                                         <z><b>Админ панель</b></z>
                                     </a>
                                 <li><a href="/">Перейти на сайт</a>
-                                <li><a href="logout.php">Выход</a>
+                                <li><a href="/admin/models/logout.php">Выход</a>
                             </ul>
 
                         </nav>
@@ -29,7 +29,7 @@ require_once "start.php";
             <!-- END Header (navbar) -->
             <div id="addart">
                 <form method="post" enctype="multipart/form-data"
-                      action="index.php?action=<?= $_GET['action'] ?>&id=<?= $_GET['id'] ?>">
+                      action="/admin/index.php?action=<?= $_GET['action'] ?>&id=<?= $_GET['id'] ?>">
                     <label>
                         Выбор категории<br>
                         <select required name="category_id" autofocus>
@@ -70,7 +70,7 @@ require_once "start.php";
                         ?>
                         <label>
                             <input type="submit" name="imageDelete" value="Удалить фото" formmethod="post"
-                                   formaction="index.php?action=deleteImage&id=<?= $_GET['id'] ?>" class="btn">
+                                   formaction="/admin/index.php?action=deleteImage&id=<?= $_GET['id'] ?>" class="btn">
                         </label>
                     <?php } ?>
                     <label>
@@ -84,10 +84,11 @@ require_once "start.php";
                         <?php if ($_GET['action'] == 'edit') {
                             if ($article['image'] != null && $article['image'] != 'default.jpg') {
                                 ?><input type="submit" name="imageDelete" value="Изменить" formmethod="post"
-                                         formaction="index.php?action=changeImage&id=<?= $_GET['id'] ?>" class="btn">
+                                         formaction="/admin/index.php?action=changeImage&id=<?= $_GET['id'] ?>"
+                                         class="btn">
                             <?php } else {
                                 ?> <input type="submit" name="imageDelete" value="Добавить" formmethod="post"
-                                          formaction="index.php?action=changeImage&id=<?= $_GET['id'] ?>"
+                                          formaction="/admin/index.php?action=changeImage&id=<?= $_GET['id'] ?>"
                                           class="btn"><?php }
                         } ?>
                     </label><br><br><br>
@@ -117,7 +118,7 @@ require_once "start.php";
                                 <td><?= $com['author'] ?></td>
                                 <td><?= introArticle($com['text'], 50) ?></td>
                                 <td>
-                                    <a href="index.php?action=deleteComment&id=<?= $com['id'] ?>
+                                    <a href="/admin/index.php?action=deleteComment&id=<?= $com['id'] ?>
                                     &articleID=<?= $_GET['id'] ?>#form">
                                         Удалить
                                     </a>

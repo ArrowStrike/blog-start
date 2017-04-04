@@ -10,6 +10,6 @@ require_once "functions.php";
 require_once "database.php";
 $link = db_connect();
 if (!((checkUser($link, $_SESSION["email"], $_SESSION["password"])) && (isAdmin($link,$_SESSION["email"])))) {
-    redirect("/admin/authPage.php");
+    redirect("/admin/views/authPage.php");
     exit;
 }

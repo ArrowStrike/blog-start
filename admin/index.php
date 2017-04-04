@@ -1,6 +1,9 @@
 <?php
-require_once("database.php");
-require_once("functions.php");
+//-------FRONT CONTROLLER-------
+
+
+require_once("models/database.php");
+require_once("models/functions.php");
 
 $link = db_connect();
 $version = 1;
@@ -29,7 +32,7 @@ if ($action != null) {
             redirect("index.php");
         }
         $categories = getCategories($link);
-        include("addEditPage.php");
+        include("views/addEditPage.php");
     }
     if ($action == 'edit') {//входящий параметр action = edit
 
@@ -51,7 +54,7 @@ if ($action != null) {
             redirect("index.php");//переадрессация на главную страницу
         }
         $article = getArticle($link, $articleID);
-        include("addEditPage.php");  //отображаем данные для редактирования
+        include("views/addEditPage.php");  //отображаем данные для редактирования
     }
     if ($action == 'delete') {
         $articleID = (int)$_GET['id'];
@@ -104,5 +107,5 @@ if ($action != null) {
 } else {
     $categories = getCategories($link);
     $articles = allArticles($link);
-    include("adminPage.php");
+    include("views/adminPage.php");
 }
