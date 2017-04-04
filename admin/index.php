@@ -94,7 +94,6 @@ if ($action != null) {
     if ($action == 'addCategory') {
         if (!empty($_POST)) {
             newCategory($link, $_POST['newNameOfCategory']);
-            redirect("index.php");
         }
         redirect("index.php");//переадресация на главную страницу
     }
