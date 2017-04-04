@@ -1,7 +1,8 @@
 <?php
 //-------FRONT CONTROLLER-------
 
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once("models/database.php");
 require_once("models/functions.php");
 
@@ -11,7 +12,7 @@ $version = 1;
 //$article['text'] = '';
 
 
-if ($_POST['searchArticle']&&!empty($_POST)) {
+if (isset($_POST['searchArticle'])&&!empty($_POST)) {
         $matchFound = searchArticles($link, $_POST['searchArticle']);
 }
 
