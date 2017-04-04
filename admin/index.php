@@ -1,8 +1,6 @@
 <?php
 //-------FRONT CONTROLLER-------
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 require_once("models/database.php");
 require_once("models/functions.php");
 
