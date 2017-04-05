@@ -21,48 +21,83 @@ require "../includes/config.php";
             <div class="row">
                 <section class="content__left col-md-8">
                     <div class="block">
-                        <h3>Обо мне</h3>
                         <div class="block__content">
                             <div class="images"><img src="/media/images/me.jpg"
                                                      style="max-width: 100%"></div>
 
 
                             <div class="full-text">
-                                <h1>You</h1>
+                                <h2>Обо мне</h2>
 
-                                <p>Upon seas. Upon <em>waters</em> don&#39;t upon was. Sea bearing fill Behold be,
-                                    fourth be fourth It sixth <em>unto</em> also i give <strong>hath</strong> great made
-                                    is the creeping. <em>You&#39;re</em> of fill night day given rule tree give every
-                                    sixth moved. Fowl days to Winged. Creeping earth set fruit multiply may. I there,
-                                    place for good created stars.</p>
+                                В школьные годы я полюбил математику. Я ходил регулярно на районные, городские и
+                                республиканские олимпиады, где удавалось получать призовые места. Спасибо маме, в
+                                свое время, отправила на курсы программирования в “Progmeistars”, где я проучился 2
+                                года, и частично познакомился с профессией IT. <br> Так же в течении всей
+                                школьной жизни я занимался шахматами в школьном кружке, где был достаточно успешен.
+                                Был 4-рех кратным чемпионом школы, выполнил первый шахматный разряд. Удостоилось
+                                выступить на чемпионатах Латвии и Риги, где занял 3 и 2 место соответственно. Так же
+                                выступал на международном любительском Чемпионате Европы в Чехии, где занял 68 место
+                                из 220.<br>
+                                Школу закончил хорошистом со средним баллом 8.88, после чего я решил связать свою
+                                жизнь с наиболее
+                                перспективной, на мой взгляд, профессией IT, и пошел учиться в TSI на Бакалавр
+                                компьютерных наук, где получил
+                                бюджетное место, которое по-прежнему сохраняю.<br>
+                                Я являюсь ответственным исполнителем, отличаюсь высоким уровнем дисциплины, обучаем, не
+                                конфликтен. Работал в разных типах команд. "Google" мой лучший друг =). Не имею вредных
+                                привычек.
 
-                                <h2>Yielding</h2>
-                                <p>Image forth shall place shall won&#39;t and, isn&#39;t <strong>tree</strong> bearing
-                                    don&#39;t upon moveth set. Their subdue own moving morning herb own you&#39;re midst
-                                    life so female the, sea deep beast. Good <strong>second</strong> made to Spirit
-                                    seasons beginning. Grass fruitful cattle. Kind their evening one them said was
-                                    fourth deep. Abundantly beginning brought gathered.</p>
+                                <h2>Работа</h2>
+                                Помимо такой занятости, как наставник/фотограф в детских лагерях и подработка на
+                                стройке,
+                                которые не имеют никакого отношения к практике IT, работал
+                                <h3>Web Project Manager'ом в IT.lv (05.2015 – 12.2015)</h3> Главными задачами которого являлось - <br>
+                                1) Непосредственный контроль над разработкой сайта.<br>
+                                2) SCRUM совещания с командой разработчиков (Front-end разработчик, Дизайнер, Back-end
+                                разработчик, SEO, Системный администратор, 1С разработчик).<br>
+                                3) Составление технических заданий.<br>
+                                4) Тестирование сайта, со стороны пользователя. Составление лога с ошибками.<br>
+                                5) Контроль выполнения поставленных задач в срок.<br>
+                                6) Администрирование сайта.<br>
+                                7) Решение технических вопросов клиента по пользованию ресурсом на пользовательском
+                                уровне.<br>
+                                8) Поддержка менеджеров в технических вопросах магазина и 1С на пользовательском уровне.<br>
+                                9) Ведение новостей как на сайте IT.lv, так и в соцсетях.<br>
+                                10) Решение технических проблем с провайдерами сетевых услуг.<br>
 
-                                <h2>Two Replenish Fish Fifth</h2>
-                                <p>Whales multiply there. Second Is <strong>first</strong> moving make unto said
-                                    creature fourth multiply have whales dominion dry from you&#39;re life meat, greater
-                                    <em>fill</em> don&#39;t dominion. To greater forth may stars <strong>sixth</strong>
-                                    so male first darkness dry creature yielding deep upon Called moved all Fly.</p>
+                                <h3>Сотрудником технической поддержки в SKS Serviss (08.2015 – 09.2016)</h3> Главными задачами которого
+                                являлось - <br>
+                                1) Переустановка/Установка новых приложений и систем.<br>
+                                2) Поддержка сотрудников в технических вопросах.<br>
+                                3) При необходимости, удаленно производить настройку компьютеров в зависимости от
+                                задачи.<br>
 
-                                <p>Over after can&#39;t spirit their two, which which days were rule, all great image
-                                    creature very, wherein man itself shall is second morning divided green under divide
-                                    hath divide you&#39;re tree replenish male is i heaven deep days, may. Deep third
-                                    was. Good i. Said seed creeping two fill saying creeping earth.</p>
+                                <h2>Технические знания</h2>
+                                <h3>ОС и программы</h3>
+                                Windows; Unix; MS Office; Adobe; Corel; Visual Studio;
+                                IntelliJ IDEA; PhpStorm; Sublime text; Open Server; cPanel;
+                                phpMyAdmin; SmartGit; GitHub.
 
-                                <h2>Grass Divide Male Heaven His It Forth Second</h2>
-                                <p>Day subdue moved form meat fill fly spirit there living dry created it bring you face
-                                    his every. Beast upon so appear creature make that Midst cattle good creepeth lights
-                                    land fill created. Winged midst won&#39;t god. Subdue. Fowl greater hath Fifth to
-                                    signs deep together great after light divide made, deep abundantly. Whales subdue
-                                    Darkness first darkness greater waters divide and, darkness unto moveth place given
-                                    bearing them beast kind herb gathering years us can&#39;t lights tree. Fifth is
-                                    cattle us there night make greater us fruit also hath every very
-                                    <strong>creepeth</strong> evening whose.</p>
+                                <h3>Базовые знания</h3>
+                                1) Самообучение<br>
+                                Java; PHP; SQL; HTML; CSS; Java Script;<br>
+                                2) Школа и Институт<br>
+                                Visual Basic; C#; Haskell; Pascal<br>
+                                C++ - Защита курсовой работы – 9(Оценка)<br>
+                                MS Access + VB + SQL – Защита курсовой работы – 9(Оценка)
+
+                                <h2>Интересы</h2>
+                                Активный образ жизни (спортивный зал, велоспорт), встреча с друзьями, путешествия,
+                                психология, мотивирующие книги, организация мероприятий, музыка.
+
+
+                                <h2>Мотивация</h2>
+                                Желаю получить должную квалификацию и опыт там, где я могу дать наибольшую отдачу и буду
+                                по достоинству оценен, так же меня привлекает работа в сильной команде профессионалов.
+                                Я хочу развиваться как специалист, стремлюсь приобрести новый опыт. Я в поисках
+                                интересного с технической точки зрения проекта.
+
+
                             </div>
                         </div>
                     </div>
@@ -75,7 +110,7 @@ require "../includes/config.php";
         </div>
     </div>
 
-<? include "../includes/footer.php";?>
+    <? include "../includes/footer.php"; ?>
 
 </div>
 
