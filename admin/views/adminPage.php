@@ -49,7 +49,7 @@ require_once "/models/start.php";
                             <option disabled selected></option><?php
                             foreach ($categories as $cat) {
                                 ?>
-                                <option value="<?php echo $cat['id']; ?>"><?php echo $cat['title']; ?></option>
+                                <option value="<?php echo $cat['id']; ?>"><?php echo $cat['title']; ?> (id=<?php echo $cat['id']; ?>)</option>
                             <?php } ?>
                         </select>
                     </label>
@@ -82,7 +82,7 @@ require_once "/models/start.php";
                         <?php foreach ($matchFound as $elem): ?>
                             <tr>
                                 <td><?= $elem['pubdate'] ?></td>
-                                <td><?= $elem['category_id'] ?></td>
+                                <td>id=<?= $elem['category_id'] ?></td>
                                 <td><?= introArticle($elem['title'], 50); ?></td>
                                 <td>
                                     <a href="/admin/index.php?action=edit&id=<?= $elem['id'] ?>">Редактировать</a>
@@ -115,7 +115,7 @@ require_once "/models/start.php";
                         foreach ($articles as $article): ?>
                             <tr>
                                 <td><?= $article['pubdate'] ?></td>
-                                <td><?= $article['category_id'] ?></td>
+                                <td>id=<?= $article['category_id'] ?></td>
                                 <td><?= introArticle($article['title'], 50) ?></td>
                                 <td>
                                     <a href="/admin/index.php?action=edit&id=<?= $article['id'] ?>">
