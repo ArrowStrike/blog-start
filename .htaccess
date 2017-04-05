@@ -27,7 +27,7 @@ RewriteRule ^articles/([0-9]+)$ pages/articles.php?page=$1 [NC,L]
 
 #http://blog.com/pages/article.php?id=33
 RewriteRule ^article/([0-9]+)-?([0-9a-z-]+)?$ pages/article.php?id=$1 [NC,L]
-sfdsdfs
+
 RewriteRule ^aboutMe$ pages/aboutMe.php [NC,L]
 
 RewriteRule ^copyright$ pages/copyright.php [NC,L]
