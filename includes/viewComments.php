@@ -25,9 +25,8 @@
                     $errors[] = 'Введите текст комментария!';
                 }
                 if (empty($errors)) {
-                    mysqli_query($connection, "INSERT INTO comments (author, nickname, email, text, pubdate, articles_id) 
+                    mysqli_query($connection, "INSERT INTO comments (author, email, text, pubdate, articles_id) 
                                               VALUES ('" . $postData['name'] . "',
-                                              '" . $postData['nickname'] . "',
                                               '" . $postData['email'] . "',
                                               '" . $postData['text'] . "',
                                                NOW(),
