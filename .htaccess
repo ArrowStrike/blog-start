@@ -3,6 +3,7 @@ Options -Indexes
 #DirectorySlash off
 
 RewriteEngine On
+Options -Indexes
 Options +FollowSymLinks
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -4,7 +4,7 @@ require "../includes/config.php";
 $article = mysqli_query($connection, "SELECT * FROM articles WHERE id = " . (int)$_GET['id']);
 $art = mysqli_fetch_assoc($article);
 if (($_SERVER['REQUEST_URI']) != "/article/" . $art['id'] . "-" . translit($art['title']) && mysqli_num_rows($article) != 0) {
-        redirect("/article/" . $art['id'] . "-" . translit($art['title']));
+    redirect("/article/" . $art['id'] . "-" . translit($art['title']));
 }
 
 ?>
